@@ -1,0 +1,26 @@
+{{- if .Values.dashboards }}
+{{- $files := .Files }}
+{{- range $provider, $dashboards := .Values.dashboards }}
+{{- if $dashboards }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "grafana.fullname" $ }}-dashboards-{{ $provider }}
+  namespace: {{ $.Release.Namespace }}
+  labels:
+    {{- include "grafana.labels" $ | nindent 4 }}
+    {{ $.Values.sidecar.dashboards.label }}: "{{ $.Values.sidecar.dashboards.labelValue }}"
+data:
+  {{- range $dashboardName, $dashboardConfig := $dashboards }}
+  {{- if $dashboardConfig.file }}
+  {{ $dashboardName }}.json: |-
+    {{- $files.Get (printf "dashboards/%s" $dashboardConfig.file) | nindent 4 }}
+  {{- else if $dashboardConfig.json }}
+  {{ $dashboardName }}.json: |-
+    {{- $dashboardConfig.json | nindent 4 }}
+  {{- end }}
+  {{- end }}
+{{- end }}
+{{- end }}
+{{- end }}
