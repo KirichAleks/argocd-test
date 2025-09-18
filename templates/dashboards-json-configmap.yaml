@@ -1,16 +1,19 @@
 {{- if .Values.dashboards.enabled }}
+{{- $files := .Files }}
+{{- range $path, $bytes := $files.Glob "dashboards/*.json" }}
+{{- $filename := base $path }}
+{{- $name := trimSuffix ".json" $filename }}
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "grafana.fullname" . }}-dashboards
+  name: {{ include "grafana.fullname" . }}-{{ $name | lower | replace "_" "-" }}
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "grafana.labels" . | nindent 4 }}
-    grafana_dashboard: "1"  # важно для sidecar
+    grafana_dashboard: "1"
 data:
-{{- $files := .Files }}
-{{- range $path, $bytes := $files.Glob "dashboards/*.json" }}
-  {{ base $path }}: |-
+  {{ $filename }}: |-
 {{ $files.Get $path | indent 4 }}
 {{- end }}
 {{- end }}

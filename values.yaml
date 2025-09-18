@@ -876,9 +876,9 @@ dashboards: {}
 ##   example-dashboard.json: |
 ##     RAW_JSON
 ##
-dashboardsConfigMaps: 
- rabbitmq: "grafana-dashboard-rabbitmq-json"
- test: "grafana-dashboard-test-json"
+dashboardsConfigMaps: {}
+#  rabbitmq: "grafana-rabbitmq.json"
+#  test: "grafana-dashboard-test-json"
 
 ## Grafana's primary configuration
 ## NOTE: values in map will be converted to ini format
