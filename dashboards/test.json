@@ -1,0 +1,17 @@
+# test-dashboard.json
+{
+  "title": "Test Dashboard",
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Test Panel",
+      "datasource": "YOUR_DATASOURCE_NAME",
+      "targets": [
+        {
+          "expr": "up",
+          "refId": "A"
+        }
+      ]
+    }
+  ]
+}
