@@ -1159,8 +1159,6 @@ sidecar:
     #
     # provider configuration that lets grafana manage the dashboards
     provider:
-      default: 
-        rabbitmq: rabbitmq.json
       # name of the provider, should be unique
       name: sidecarProvider
       # orgid as configured in grafana
