@@ -878,7 +878,7 @@ dashboards: {}
 ##
 dashboardsConfigMaps: 
  default: "grafana-dashboards"
- rabbit: "grafana-dashboard-rabbitmq-json"
+ grafana-dashboard-rabbitmq-json: "grafana-dashboard-rabbitmq-json"
  test: "grafana-dashboard-test-json"
 
 ## Grafana's primary configuration
