@@ -838,9 +838,7 @@ defaultCurlOptions: "-skf"
 ##
 ## dashboards per provider, use provider name as key.
 ##
-dashboards:
-  rabbitmq:
-    file: "rabbitmq.json"
+dashboards: {}
   # default:
   #   some-dashboard:
   #     json: |
@@ -879,7 +877,7 @@ dashboards:
 ##     RAW_JSON
 ##
 dashboardsConfigMaps: 
- grafana-dashboard-rabbitmq-json: "grafana-dashboard-rabbitmq-json"
+ rabbitmq: "grafana-dashboard-rabbitmq-json"
  test: "grafana-dashboard-test-json"
 
 ## Grafana's primary configuration
